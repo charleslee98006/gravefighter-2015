@@ -3,10 +3,9 @@ using System.Collections;
 public interface IBody<J>{
 		void Attack(J enemy);
 		void Move();
+		void Regenerate();
+}
 
 
-}
-public interface IBodydamage<T>{
-		void DamageTaken(T damage);
-}
+
 	

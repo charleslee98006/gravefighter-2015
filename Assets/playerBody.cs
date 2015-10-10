@@ -1,50 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playerBody : MonoBehaviour, IBody<GameObject>{
-	private float walkSpeed;
-	private float curSpeed;
-	private float maxSpeed;
-	void Start()
+public class playerBody : MonoBehaviour, IBody<GameObject>, IDamageable<int> {
+	public int health;
+	public int attack;
+	public int maxRange;
+	private bool isAttacking;
+	private float attackInterval;
+	private float maxAttackInterval;
+	
+	private float moveSpeed;
+	
+	public GameObject currentTarget;
+	
+	void update()
 	{
-		
-		curSpeed = 10;
+		if (!isAttacking) 
+		{
+			// find nearest gravestone/player body and attack
+			// avoid targets already being attacked.
+			// mark the target as being attacked. (max attacker count on an object = 4?)
+			isAttacking = true;
+		} 
+		if (true/* next to player body or gravestone */) 
+		{
+			onAttack ();
+		} 
+		else 
+		{ // need to move towards a target
+			onMoveToTarget ();
+		}
 		
 	}
-	void Update(){
-		if (Input.GetKey(KeyCode.A))
-		{
-			transform.position += Vector3.left * curSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.D))
-		{
-			transform.position += Vector3.right * curSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.W))
-		{
-			transform.position += Vector3.up * curSpeed * Time.deltaTime;
-		}
-		if (Input.GetKey(KeyCode.S))
-		{
-			transform.position += Vector3.down * curSpeed * Time.deltaTime;
-		}
-		//Debug.Log("moving");
+	
+	public void Attack(GameObject enemy){
 	}
+	
 	public void Move(){
 	}
-	public void Attack(GameObject enemy){
-
+	
+	public void DamageTaken(int damage){
+		health -= damage;
+		if (health <= 0) {
+		}
 	}
-	public void build(){
+	
+	void onAttack()
+	{
+		attackInterval -= Time.deltaTime;
+		if(attackInterval <= 0)
+		{
+			attackTarget();
+			attackInterval = maxAttackInterval;
+		}
 	}
-//	// Use this for initialization
-//	void Start () {
-//	
-//	}
-//	
-//	// Update is called once per frame
-//	void Update () {
-//	
-//	}
-
+	void onMoveToTarget()
+	{
+		// move towards the selected target.
+	}
 }
