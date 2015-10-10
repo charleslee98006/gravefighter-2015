@@ -11,9 +11,15 @@ public class enemyBody : MonoBehaviour, IBody<GameObject>, IDamageable<int> {
 	private float moveSpeed;
 	
 	public GameObject currentTarget;
+	public GameObject gameController;
 
 	void update()
 	{
+		if (currentTarget.GetComponent<playerBody>())
+		{
+			if(currentTarget.GetComponent<playerBody>.
+			isAttacking = false;
+		}
 		if (!isAttacking) 
 		{
 			// find nearest gravestone/player body and attack
@@ -49,7 +55,7 @@ public class enemyBody : MonoBehaviour, IBody<GameObject>, IDamageable<int> {
 		attackInterval -= Time.deltaTime;
 		if(attackInterval <= 0)
 		{
-			attackTarget();
+			//attackTarget();
 			attackInterval = maxAttackInterval;
 		}
 	}

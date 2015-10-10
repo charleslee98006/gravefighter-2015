@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class plot : MonoBehaviour
+public class plot : MonoBehaviour, IDamageable<int>
 {
     public bool hasGravestone;
     public bool hasBody;
