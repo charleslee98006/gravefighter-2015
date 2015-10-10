@@ -118,6 +118,9 @@ public class GameManager : MonoBehaviour {
 	void MainMenuBegin(State previousState) {
 	}
 	void MainMenu() {
+		// TODO .. mainMenuUI
+		// TODO .. if pressStart = wave
+		// HACK push to day...
 		state = State.Day;
 	}
 	void MainMenuEnd(State nextState) {
@@ -148,6 +151,8 @@ public class GameManager : MonoBehaviour {
 	}
 	void Day() {
 		CheckForPause();
+		// TODO.. do Day
+		// TODO.. if time = 0; next wave
 	}
 	void DayEnd(State nextState) {
 	}
@@ -157,6 +162,10 @@ public class GameManager : MonoBehaviour {
 	void NextWaveBegin(State previousState) {
 	}
 	void NextWave() {
+		// TODO nextWave UI
+		// TODO waveDiffculty++
+		// TODO if waveCount =0; Day
+		// TODO else Wave
 	}
 	void NextWaveEnd(State nextState) {
 	}
@@ -167,6 +176,9 @@ public class GameManager : MonoBehaviour {
 	}
 	void Wave() {
 		CheckForPause();
+		// TODO spawn X enemny at distance (using waveDiffculty)
+		// TODO if enemny = 0; next wave
+		// TODO if grave = 0; next gameOver
 	}
 	void WaveEnd(State nextState) {
 	}
@@ -176,6 +188,8 @@ public class GameManager : MonoBehaviour {
 	void GameOverBegin(State previousState) {
 	}
 	void GameOver() {
+		//TODO.. gameOverUI
+		//TODO.. if gameOverUI = done; mainMenu
 	}
 	void GameOverEnd(State nextState) {
 	}
