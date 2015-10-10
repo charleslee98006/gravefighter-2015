@@ -125,11 +125,21 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	#region Pause State Machine Implementation
+	State pauseReturnState;
 	void PauseBegin(State previousState) {
+		pauseReturnState = previousState;
 	}
 	void Pause() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			state = pauseReturnState;
+		}
 	}
 	void PauseEnd(State nextState) {
+	}
+	void CheckForPause() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			state = State.Pause;
+		}
 	}
 	#endregion
 
@@ -137,6 +147,7 @@ public class GameManager : MonoBehaviour {
 	void DayBegin(State previousState) {
 	}
 	void Day() {
+		CheckForPause();
 	}
 	void DayEnd(State nextState) {
 	}
@@ -155,6 +166,7 @@ public class GameManager : MonoBehaviour {
 	void WaveBegin(State previousState) {
 	}
 	void Wave() {
+		CheckForPause();
 	}
 	void WaveEnd(State nextState) {
 	}
